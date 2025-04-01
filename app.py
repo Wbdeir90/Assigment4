@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
 import numpy as np
 import logging
-
+import os
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
@@ -61,4 +61,6 @@ def predict():
         return jsonify({"error": "Failed to make prediction"}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
+   
+    port = int(os.environ.get("PORT", 8080))  # Ensures compatibility with Cloud Run
+    app.run(host='0.0.0.0', port=port, debug=True)

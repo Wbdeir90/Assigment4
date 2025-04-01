@@ -1,16 +1,17 @@
+# Use an official Python runtime as a parent image
 FROM python:3.9
 
-# Set the working directory
+# Set the working directory in the container
 WORKDIR /app
 
-COPY app.py requirements.txt /app/
+# Copy the current directory contents into the container
+COPY . /app
+
+# Install any dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port Flask runs on
+# Expose port 8080 for Cloud Run
 EXPOSE 8080
-COPY iris.csv /app/iris.csv
 
-
-
-# Command to run the application
+# Run the application
 CMD ["python", "app.py"]
