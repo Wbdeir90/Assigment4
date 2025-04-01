@@ -1,0 +1,22 @@
+steps:
+  # Step 1: Upload all necessary files to the build context
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/assigment4-455421/web-app', '.']
+    dir: '.'
+
+  # Step 2: Push the built Docker image to Google Container Registry (GCR)
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/assigment4-455421/web-app']
+
+  # Step 3: Deploy the new image to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: [
+      'run', 'deploy', 'web-app',
+      '--image', 'gcr.io/assigment4-455421/web-app',
+      '--platform', 'managed',
+      '--region', 'us-central1',
+      '--allow-unauthenticated'
+    ]
+
+images:
+  - 'gcr.io/assigment4-455421/web-app'
