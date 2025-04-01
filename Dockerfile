@@ -9,6 +9,7 @@ COPY . /app
 
 # Install any dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir flask-cors
 
 # Expose port 8080 for Cloud Run
 EXPOSE 8080
