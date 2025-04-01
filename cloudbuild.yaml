@@ -1,6 +1,5 @@
 options:
-  logging: GCS_ONLY
-  logsBucket: "gs://assigment4-logs"
+  logging: CLOUD_LOGGING_ONLY
 
 steps:
   # Step 1: Upload all necessary files to the build context
